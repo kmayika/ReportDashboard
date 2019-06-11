@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <a href="" class="navbar-brand">Capfin Restore Dashboard</a>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a href="" class="link"><strong>HOME</strong></a>
+            </li>
+        </ul>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="column">
+                <h2 class="text-center">UAT</h2>
+                <div class="card">
+                        <canvas id ="UATChartDb"></canvas>
+                        <canvas id ="UATChartApp"></canvas>
+                </div>
+            </div>
+            <div class="column">
+                    <h2 class="text-center">PRE</h2>
+                <div class="card">
+                        <canvas id ="PREChartDb"></canvas>
+                        <canvas id ="PREChartApp"></canvas>
+                </div>
+            </div>
+            <div class="column">
+                    <h2 class="text-center">SYSTEST</h2>
+                <div class="card">
+                        <canvas id ="SYSTESTChartDb"></canvas>
+                        <canvas id ="SYSTESTChartApp"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+     <script>
+        let x = 10;
+        let color = 'green';
+        let myChart = document.getElementById('UATChartDb').getContext('2d');
+        let PieChartDb = new Chart(myChart,{
+            type: 'pie',
+            data: { 
+                labels:{
+                    display: false
+                },
+                datasets:[{
+                    labels:'UAT',
+                    data:[x],
+                    backgroundColor: color,
+                    borderWidth:1,
+                    borderColor:color
+                }]
+            },
+            options:{
+                title: {
+                display: true,
+                text: 'DB Restore'
+                }
+            }
+        });
+        color = 'green';
+        let ChartApp = document.getElementById('UATChartApp').getContext('2d');
+        let PieChartApp = new Chart(ChartApp,{
+            type: 'pie',
+            data: { 
+                labels:{
+                    display: false
+                },
+                datasets:[{
+                    labels:'UAT',
+                    data:[x],
+                    backgroundColor: color,
+                    borderWidth:1,
+                    borderColor:color
+                }]
+            },
+            options:{
+                title:{
+                    display: true,
+                    text: 'App Restore'
+                }
+            }
+        });
+        x = 10;
+        color = 'red';
+        let PreChartDb = document.getElementById('PREChartDb').getContext('2d');
+        let ChartPreDb = new Chart(PreChartDb,{
+            type: 'pie',
+            data: { 
+                labels:{
+                    display: false
+                },
+                datasets:[{
+                    labels:'UAT',
+                    data:[x],
+                    backgroundColor: color,
+                    borderWidth:1,
+                    borderColor:color
+                }]
+            },
+            options:{
+                title: {
+                display: true,
+                text: 'DB Restore'
+                }
+            }
+        });
+        color = 'green';
+        let PreChartApp = document.getElementById('PREChartApp').getContext('2d');
+        let ChartPreApp = new Chart(PreChartApp,{
+            type: 'pie',
+            data: { 
+                labels:{
+                    display: false
+                },
+                datasets:[{
+                    labels:'UAT',
+                    data:[x],
+                    backgroundColor: color,
+                    borderWidth:1,
+                    borderColor:color
+                }]
+            },
+            options:{
+                title:{
+                    display: true,
+                    text: 'App Restore'
+                }
+            }
+        });
+        x = 10;
+        color = 'red';
+        let SYSTESTChartDb = document.getElementById('SYSTESTChartDb').getContext('2d');
+        let ChartSYSTESTDb = new Chart(SYSTESTChartDb,{
+            type: 'pie',
+            data: { 
+                labels:{
+                    display: false
+                },
+                datasets:[{
+                    labels:'UAT',
+                    data:[x],
+                    backgroundColor: color,
+                    borderWidth:1,
+                    borderColor:color
+                }]
+            },
+            options:{
+                title: {
+                display: true,
+                text: 'DB Restore'
+                }
+            }
+        });
+        color = 'green';
+        let SYSTESTChartApp = document.getElementById('SYSTESTChartApp').getContext('2d');
+        let ChartSYSTESTApp = new Chart(SYSTESTChartApp,{
+            type: 'pie',
+            data: { 
+                labels:{
+                    display: false
+                },
+                datasets:[{
+                    labels:'UAT',
+                    data:[x],
+                    backgroundColor: color,
+                    borderWidth:1,
+                    borderColor:color
+                }]
+            },
+            options:{
+                title:{
+                    display: true,
+                    text: 'App Restore'
+                }
+            }
+        });
+
+
+    </script>
+</body>
+</html>

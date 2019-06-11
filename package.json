@@ -1,0 +1,11 @@
+{
+  "name": "repdashboard",
+  "version": "1.0.0",
+  "description": "report dashboard app",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "kmayika",
+  "license": "ISC"
+}

@@ -15,14 +15,21 @@
             <li class="nav-item active ">
                 <a href="" class="nav-link"><strong>HOME</strong></a>
             </li>
-            <li class="nav-item">
-                <a href="" class="nav-link">10:00</a>
-            </li>
         </ul>
+        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <div id="clock" class="navbar-text" style="float: left">
+                        <span class="minutes"></span>:
+                        <span class="seconds"></span>
+                    </div>
+                </li>
+            </ul>
+        </div>
     </nav>
     <div class="container d-flex p-2">
         <div class="row">
-            <div class="frontside">
+            <div class="col-sm-4">
                 <div class="card">
                     <div class="card-body text-center">
                         <h4 class="card-title">UAT</h4>
@@ -31,7 +38,7 @@
                     </div>
                 </div>
             </div>
-            <div class="frontside">
+            <div class="col-sm-4">
                 <div class="card">
                     <div class="card-body text-center">
                         <h4 class="card-title">PRE</h4>
@@ -40,7 +47,7 @@
                     </div>
                 </div>
             </div>
-            <div class="frontside">
+            <div class="col-sm-4">
                 <div class="card">
                     <div class="card-body text-center">
                         <h4 class="card-title">SYSTEST</h4>
@@ -49,7 +56,6 @@
                     </div>
                 </div>
             </div>
-            <span id="demo"></span>
         </div>
         <!-- <div class="frontside">
             <div class="card">
@@ -62,6 +68,8 @@
             </div>
         </div> -->
     </div>
+    
+    <hr color="grey">
      <script>
         let x = 10;
         let color = 'green';
@@ -205,15 +213,111 @@
             }
         });
 
-        setInterval(function()
-        {
+        var ColorArray = [
+                        'red',
+                        'orange',
+                        'green'
+        ];
 
-                ChartSYSTESTApp.data.datasets[0].backgroundColor = 'red';
-                ChartSYSTESTApp.data.datasets[0].borderColor = 'red';
+        // var CountdownMinutes = 0.125;
+        // var CurrentTime = Date.parse(new Date());
+        // var DeadLine = new Date(CurrentTime + CountdownMinutes*60*1000);
+        // function TimeRemaining(EndTime)
+        // {
+        //     var timer = Date.parse(EndTime) - Date.parse(new Date());
+        //     var seconds = Math.floor((timer/1000) % 60);
+        //     var minutes = Math.floor((timer/1000/60) % 60);
+        //     var hours = Math.floor((timer/(1000*60*60)) % 24);
+        //     var days = Math.floor(timer/(1000*60*60*24));
+
+        //     return {'total':timer, 'days':days, 'hours':hours,'minutes':minutes,'seconds':seconds};
+        // }
+
+        // function RunClock(id, EndTime)
+        // {
+        //     var clock = document.getElementById(id);
+        //     function UpdateClock()
+        //     {
+        //         var time = TimeRemaining(EndTime);
+        //         clock.innerHTML = time.minutes+ ':'+ time.seconds;
+        //         if (time.total <= 0)
+        //         {
+        //             clearInterval(TimeInterval);
+        //             var RandoIndex = Math.floor(Math.random()*ColorArray.length),
+        //             RandoIndex2 = Math.floor(Math.random()*ColorArray.length);
+
+        //             ChartSYSTESTApp.data.datasets[0].backgroundColor = ColorArray[RandoIndex];
+        //             ChartSYSTESTApp.data.datasets[0].borderColor = ColorArray[RandoIndex];
 
 
-                ChartSYSTESTDb.data.datasets[0].backgroundColor = 'orange';
-                ChartSYSTESTDb.data.datasets[0].borderColor = 'orange';
+        //             ChartSYSTESTDb.data.datasets[0].backgroundColor = ColorArray[RandoIndex2];
+        //             ChartSYSTESTDb.data.datasets[0].borderColor = ColorArray[RandoIndex2];
+
+
+
+
+        //             ChartSYSTESTApp.render();
+        //             ChartSYSTESTApp.update();
+        //             ChartSYSTESTDb.render();
+        //             ChartSYSTESTDb.update();
+        //         }
+
+        //         if (time.minutes == 0 && time.seconds == 0)
+        //         {
+        // console.log('in this func');
+        //             Deadline = new Date(CurrentTime + CountdownMinutes*60*1000);
+        //             RunClock('clock', DeadLine);
+        //         }
+        //     }
+
+        //     UpdateClock();
+
+        //     var TimeInterval = setInterval(UpdateClock, 1000);
+        // }
+        // RunClock('clock', DeadLine);
+
+        function getTimeRemaining(endtime) {
+        var t = Date.parse(endtime) - Date.parse(new Date());
+        var seconds = Math.floor((t / 1000) % 60);
+        var minutes = Math.floor((t / 1000 / 60) % 60);
+        // var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+        // var days = Math.floor(t / (1000 * 60 * 60 * 24));
+        return {
+            'total': t,
+            // 'days': days,
+            // 'hours': hours,
+            'minutes': minutes,
+            'seconds': seconds
+        };
+        }
+
+        function initializeClock(id, endtime) {
+        var clock = document.getElementById(id);
+        // var daysSpan = clock.querySelector('.days');
+        // var hoursSpan = clock.querySelector('.hours');
+        var minutesSpan = clock.querySelector('.minutes');
+        var secondsSpan = clock.querySelector('.seconds');
+
+        function updateClock() {
+            var t = getTimeRemaining(endtime);
+
+            // daysSpan.innerHTML = t.days;
+            // hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
+            minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+            secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+
+            if (t.total <= 0) 
+            {
+                clearInterval(timeinterval);
+                var RandoIndex = Math.floor(Math.random()*ColorArray.length),
+                RandoIndex2 = Math.floor(Math.random()*ColorArray.length);
+
+                ChartSYSTESTApp.data.datasets[0].backgroundColor = ColorArray[RandoIndex];
+                ChartSYSTESTApp.data.datasets[0].borderColor = ColorArray[RandoIndex];
+
+
+                ChartSYSTESTDb.data.datasets[0].backgroundColor = ColorArray[RandoIndex2];
+                ChartSYSTESTDb.data.datasets[0].borderColor = ColorArray[RandoIndex2];
 
 
 
@@ -222,18 +326,22 @@
                 ChartSYSTESTApp.update();
                 ChartSYSTESTDb.render();
                 ChartSYSTESTDb.update();
+            }
 
-                timer = duration;
-            
+            if (t.minutes == 0 && t.seconds == 0) {
+            console.log('in this func');
+            deadline = new Date(deadline.getTime() + 0.25 * 60000);
+            initializeClock('clock', deadline); //added this line
+            }
+        }
 
-            // var CountDown = new Date("Jan 5, 2021 15:37:25").getTime();
-            // var now = new Date().getTime();
-            // var elapsed = CountDown - now;
+        updateClock();
+        var timeinterval = setInterval(updateClock, 1000);
+        }
 
-            // document.getElementById("demo").InnerHTML = elapsed;
+        var deadline = new Date(Date.parse(new Date()) +  0.25 * 60 * 1000);
+        initializeClock('clock', deadline);
 
-                
-        }, 5000);
     </script>
 </body>
 </html>
